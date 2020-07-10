@@ -13,5 +13,14 @@
 	</properties>
 	<modules>
 		<module>java-concepts</module>
+		<module>object-oriented-paradigm</module>
+		<module>basic-3-paradigm</module>
+		<module>concurrency-paradigm</module>
+		<module>functional-paradigm</module>
+		<module>collections-api</module>
+		<module>declarative-paradigm</module>
+		<module>reflection-paradigm</module>
+		<module>io-operations</module>
+		<module>meta-paradigm</module>
 	</modules>
 </project>
