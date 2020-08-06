@@ -40,6 +40,7 @@ class Model1 {
 		a = x;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		// Reason to Override equals():- Used to check the value present in the HashCodeDemo object,
 		Model1 h = (Model1) obj;
