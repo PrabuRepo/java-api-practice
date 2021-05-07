@@ -45,9 +45,9 @@ class Child extends Parent {
 	}*/
 }
 
-/*If a class is made as final, then no other class can extend it and make it as parent class.
+/* Final class can extend other classes, but it can't be inherited by others
  * E.g. String Class cannot be extended*/
-final class FinalClass {
+final class FinalClass extends Child {
 
 }
 

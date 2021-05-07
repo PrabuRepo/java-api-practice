@@ -4,8 +4,8 @@ package com.practice.oop.access.specifier1;
  * Access Modifiers: Class to test the class level access specifier
  */
 
-/* private, protected  throws Compilation Error: 
- *  - "Illegal modifier for the class AccessSpecifierClassTest1; only public, abstract & final are permitted"
+/* private, protected  throws Compilation Error -  "Illegal modifier for the class AccessSpecifierClassTest1; 
+ *   - only public, abstract & final are permitted"
  */
 
 //private class AccessSpecifierClassTest1 {
@@ -45,7 +45,7 @@ class AbstractChildClass extends AbstractAccessSpecifierClass {
 
 }
 
-// Final class can be inherited
+// Final class can inherit other classes, but it can't be inherited to other class
 // The type FinalChildClass cannot subclass the final class FinalAccessSpecifierClass
 /*class FinalChildClass extends FinalAccessSpecifierClass {
 

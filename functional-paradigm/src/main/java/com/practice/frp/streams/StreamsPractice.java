@@ -41,7 +41,7 @@ import java.util.stream.Stream;
  * the terminal operation of the pipeline is executed.
  * 
  * Terminal operations, such as Stream.forEach or IntStream.sum, may traverse the stream to produce a result or
- * aside-effect. After the terminal operation is performed, the stream pipelineis considered consumed, and can no longer
+ * aside-effect. After the terminal operation is performed, the stream pipeline is considered consumed, and can no longer
  * be used; if you need to traverse the same data source again, you must return to the data source to get a newstream.
  * 
  */
@@ -81,8 +81,8 @@ public class StreamsPractice {
 		IntStream intStream = null;
 
 		// 1.From a Collection via the stream() and parallelStream() methods
-		List<String> names = new ArrayList<>(
-				Arrays.asList(new String[] { "Amitabh", "Shekhar", "Aman", "Rahul", "Shahrukh", "Salman", "Yana", "Lokesh" }));
+		List<String> names = new ArrayList<>(Arrays.asList(
+				new String[] { "Amitabh", "Shekhar", "Aman", "Rahul", "Shahrukh", "Salman", "Yana", "Lokesh" }));
 		strStream = names.stream();
 		strStream = names.parallelStream();
 
@@ -147,7 +147,8 @@ public class StreamsPractice {
 		sortedStream.forEach(i -> System.out.print(i + " "));
 
 		names.stream().sorted().map(String::toUpperCase).forEach(System.out::println);
-		names.stream().sorted((s1, s2) -> s2.compareToIgnoreCase(s1)).map(String::toUpperCase).forEach(System.out::println);
+		names.stream().sorted((s1, s2) -> s2.compareToIgnoreCase(s1)).map(String::toUpperCase)
+				.forEach(System.out::println);
 
 		System.out.println("\nSorted Sample(Desc): ");
 		sortedStream = names.stream().map(s -> s.toLowerCase()).sorted((a, b) -> b.compareTo(a));
@@ -352,8 +353,7 @@ public class StreamsPractice {
 		}
 
 		Iterator<String> iterator = list.listIterator();
-		while (iterator.hasNext())
-			System.out.println(iterator.next());
+		while (iterator.hasNext()) System.out.println(iterator.next());
 
 		// Declarative: Internal Iterations
 		// using lambda expression
@@ -454,7 +454,8 @@ public class StreamsPractice {
 	// Other Samples:
 	public void streamCombinations() {
 		System.out.println("\n\n**************Stream: Combining multiple Operations**************");
-		List<String> names = Arrays.asList("Amitabh", "Shekhar", "Aman", "Rahul", "Shahrukh", "Salman", "Yana", "Lokesh");
+		List<String> names = Arrays.asList("Amitabh", "Shekhar", "Aman", "Rahul", "Shahrukh", "Salman", "Yana",
+				"Lokesh");
 
 		List<String> strings = Arrays.asList("A", "bbb", "CC", "dd");
 		String joined = strings.stream().map(String::toUpperCase).collect(Collectors.joining(":"));

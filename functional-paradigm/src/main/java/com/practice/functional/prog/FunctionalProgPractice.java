@@ -171,7 +171,8 @@ public class FunctionalProgPractice {
 
 	public void lambdaExprForCollection() {
 		System.out.println("\n\n**************Useful Lambda Expressions for Collection**************");
-		List<String> list = Arrays.asList("Amitabh", "Shekhar", "Aman", "Rahul", "Shahrukh", "Salman", "Yana", "Lokesh");
+		List<String> list = Arrays.asList("Amitabh", "Shekhar", "Aman", "Rahul", "Shahrukh", "Salman", "Yana",
+				"Lokesh");
 		System.out.println("ForEach: ");
 		list.forEach(i -> System.out.print(i + " "));
 
@@ -181,9 +182,10 @@ public class FunctionalProgPractice {
 		Map<Integer, String> map = new HashMap<>();
 		map.put(1, "abc");
 		map.put(2, "xyz");
+
 		// Using direct forEach
 		map.forEach((k, v) -> System.out.println("Key: " + k + "; Val: " + v));
-		// Using Keyset
+		// Using entrySet
 		map.entrySet().forEach(e -> System.out.println(e.getKey() + ":" + e.getValue()));
 
 		list.sort((a, b) -> a.length() - b.length());
@@ -216,8 +218,7 @@ public class FunctionalProgPractice {
 
 		items.forEach((k, v) -> {
 			System.out.println("Item : " + k + " Count : " + v);
-			if ("E".equals(k))
-				System.out.println("Hello E");
+			if ("E".equals(k)) System.out.println("Hello E");
 		});
 
 		// Add a new key-value pair only if the key does not exist in the HashMap

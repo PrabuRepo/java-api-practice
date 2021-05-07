@@ -1,7 +1,10 @@
 package com.practice.collection;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -9,54 +12,70 @@ public class ConcurrentModiException {
 
 	public static void main(String[] args) {
 
-		List<Integer> list = new ArrayList<>();
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		list.add(4);
+		ConcurrentModiException ob = new ConcurrentModiException();
 
-		List<Integer> copylist = new CopyOnWriteArrayList<Integer>();
-		/*		copylist.add(1);
-				copylist.add(2);
-				copylist.add(3);
-				copylist.add(4);
-		*/
-		copylist.addAll(list);
-		System.out.println("\n==>CopyOnWriteArrayList Itertor:");
-		Iterator<Integer> copyWriteListIterator = copylist.iterator();
-		System.out.println("\n==> Iterator:");
-		while (copyWriteListIterator.hasNext()) {
-			Integer data = copyWriteListIterator.next();
-			copylist.set(1, 99);
-			if (data.equals(1))
-				copylist.remove(1);
-			System.out.println("Data:" + data);
-		}
-		/*System.out.println("\n==>For each:");
-		for(Integer data : copylist){
-			System.out.println("Data:"+data);
-			list.set(2, 88);
-			list.remove(3);
-		}*/
+		System.out.println("******ArrayList Delete***********");
+		ob.deleteOperations(new ArrayList<>(Arrays.asList(10, 20, 30, 40, 50, 60, 70)));
+		//foreach throws java.util.ConcurrentModificationException
 
-		Iterator<Integer> iterator = list.iterator();
-		System.out.println("\n==> Iterator:");
-		while (iterator.hasNext()) {
-			System.out.println("Data:" + iterator.next());
-			list.set(1, 99);
-			// list.remove(3);
-		}
-		System.out.println("\n==>For each:");
-		for (Integer data : list) {
-			System.out.println("Data:" + data);
-			list.set(2, 88);
-			list.remove(3);
-		}
-		System.out.println("\n==> collection stream() util....");
-		list.forEach((temp) -> {
-			System.out.println(temp);
-		});
+		System.out.println("\n******LinkedList Delete***********");
+		ob.deleteOperations(new LinkedList<>(Arrays.asList(10, 20, 30, 40, 50, 60, 70)));
+		//foreach throws java.util.ConcurrentModificationException
 
+		System.out.println("\n******CopyOnWriteArrayList Delete***********");
+		ob.deleteOperations(new CopyOnWriteArrayList<>(Arrays.asList(10, 20, 30, 40, 50, 60, 70)));
+		//Iterator throws java.lang.UnsupportedOperationException 
+
+		System.out.println("\n******Synchronized ArrayList Delete***********");
+		List<Integer> arrList = new ArrayList<>(Arrays.asList(10, 20, 30, 40, 50, 60, 70));
+		ob.deleteOperations(Collections.synchronizedList(arrList));
+		//Iterator throws java.lang.UnsupportedOperationException 
+	}
+
+	public void deleteOperations(List<Integer> intList) {
+		intList.forEach(k -> System.out.print(k + " "));
+		System.out.println("\nDelete using ForEach: ");
+		try {
+			for (Integer val : intList) {
+				if (val == 30) {
+					intList.remove(val);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Exception Thrown: " + e.getCause());
+			e.printStackTrace();
+		}
+		System.out.println();
+		intList.forEach(k -> System.out.print(k + " "));
+
+		System.out.println("\nDelete using For: ");
+		try {
+			for (int i = 0; i < intList.size(); i++) {
+				if (intList.get(i).equals(40)) {
+					intList.remove(i);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Exception Thrown: " + e.getMessage());
+			e.printStackTrace();
+		}
+		System.out.println();
+		intList.forEach(k -> System.out.print(k + " "));
+
+		System.out.println("\nDelete using Iterators: ");
+		try {
+			Iterator<Integer> iterators = intList.iterator();
+			while (iterators.hasNext()) {
+				if (iterators.next() == 50) {
+					iterators.remove();
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Exception Thrown: " + e.getMessage());
+			e.printStackTrace();
+		}
+		System.out.println();
+		intList.forEach(k -> System.out.print(k + " "));
 	}
 
 }
